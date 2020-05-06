@@ -1,0 +1,36 @@
+{
+  "name": "interficie/laravel-spanishid",
+  "description": "Check spanish identity numbers (DNI, CIF, NIE, NIF, SSN)",
+  "type": "library",
+  "keywords": ["Spain", "spanish", "España", "DNI", "NIF","CIF", "NIE", "SSN"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Marc pujol",
+      "email": "marc.pujol@interficie.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "Interficie\\SpanishID\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Interficie\\SpanishID\\SpanishIDServiceProvider"
+      ],
+      "aliases": {
+        "SpanishID": "Interficie\\SpanishID\\Facade"
+      }
+    }
+  },
+  "require": {
+    "php": ">=7.1",
+    "illuminate/support": "^6|^7"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.0"
+  }
+}
