@@ -3,12 +3,11 @@
 namespace Interficie\SpanishID;
 
 use Illuminate\Contracts\Container\BindingResolutionException;
-use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Contracts\Translation\Translator;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
-class SpanishIDServiceProvider extends ServiceProvider implements DeferrableProvider
+class SpanishIDServiceProvider extends ServiceProvider
 {
 
     /**
@@ -48,6 +47,11 @@ class SpanishIDServiceProvider extends ServiceProvider implements DeferrableProv
      */
     private function addRules(): void
     {
+        Validator::extend('dni', function ($attribute, $value, $parameters, $validator) {
+            $identity = new SpanishID();
+            return $identity->isValidNif($value);
+        });
+
         Validator::extend('nif', function ($attribute, $value, $parameters, $validator) {
             $identity = new SpanishID();
             return $identity->isValidNif($value);
@@ -79,6 +83,10 @@ class SpanishIDServiceProvider extends ServiceProvider implements DeferrableProv
     {
         /** @var Translator $translator */
         $translator = $this->app->make(Translator::class);
+
+        Validator::replacer('dni', function ($message, $attribute, $rule, $parameters) use ($translator) {
+            return $translator->get('spanishid::validation.dni', ['attribute' => $attribute]);
+        });
 
         Validator::replacer('nif', function ($message, $attribute, $rule, $parameters) use ($translator) {
             return $translator->get('spanishid::validation.nif', ['attribute' => $attribute]);

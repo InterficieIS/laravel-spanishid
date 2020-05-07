@@ -1,6 +1,7 @@
 <?php
 
 return [
+    "validation.dni" => "El campo :attribute no es un DNI válido.",
     "validation.nif" => "El campo :attribute no es un NIF válido.",
     "validation.cif" => "El campo :attribute no es un CIF válido.",
     "validation.nie" => "El campo :attribute no es un NIE válido.",
