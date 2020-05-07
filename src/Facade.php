@@ -1,6 +1,6 @@
 <?php
 
-namespace Interficie\SpanishID\Facades;
+namespace Interficie\SpanishID;
 
 use Illuminate\Support\Facades\Facade as OriginalFacade;
 
