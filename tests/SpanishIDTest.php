@@ -23,6 +23,7 @@ class SpanishIDTest extends TestCase
         $this->assertTrue($this->spanishId->isValidNif('64160547T'));
         $this->assertTrue($this->spanishId->isValidNif('48692083W'));
         $this->assertTrue($this->spanishId->isValidNif('08861617Q'));
+        $this->assertTrue($this->spanishId->isValidNif('08861617q'));
     }
 
     public function test_invalid_dni(): void
@@ -41,6 +42,7 @@ class SpanishIDTest extends TestCase
         $this->assertTrue($this->spanishId->isValidCif('J51062271'));
         $this->assertTrue($this->spanishId->isValidCif('D9990690A'));
         $this->assertTrue($this->spanishId->isValidCif('N8796829C'));
+        $this->assertTrue($this->spanishId->isValidCif('N8796829c'));
     }
 
     public function test_invalid_cif(): void
@@ -57,6 +59,7 @@ class SpanishIDTest extends TestCase
     {
         $this->assertTrue($this->spanishId->isValidNie('X3212050P'));
         $this->assertTrue($this->spanishId->isValidNie('X2792997S'));
+        $this->assertTrue($this->spanishId->isValidNie('X2792997s'));
     }
 
 
@@ -74,6 +77,7 @@ class SpanishIDTest extends TestCase
     public function test_valid_nif(): void
     {
         $this->assertTrue($this->spanishId->isValidNif('21361012S'));
+        $this->assertTrue($this->spanishId->isValidNif('21361012s'));
         $this->assertTrue($this->spanishId->isValidNif('Q6887124C'));
         $this->assertTrue($this->spanishId->isValidNif('X3212050P'));
     }
@@ -99,7 +103,4 @@ class SpanishIDTest extends TestCase
         $this->assertFalse($this->spanishId->isValidNNSS('5453453245234532'));
         $this->assertFalse($this->spanishId->isValidNNSS('343465278753'));
     }
-
-
-
 }
