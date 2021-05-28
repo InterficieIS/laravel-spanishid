@@ -17,7 +17,7 @@ class SpanishIDServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(SpanishID.class, function () {
+        $this->app->bind(SpanishID::class, function () {
             return new SpanishID();
         });
     }
@@ -47,27 +47,27 @@ class SpanishIDServiceProvider extends ServiceProvider
      */
     private function addRules(): void
     {
-        Validator.extend('dni', function ($attribute, $value, $parameters, $validator) {
+        Validator::extend('dni', function ($attribute, $value, $parameters, $validator) {
             $identity = new SpanishID();
             return $identity->isValidNif(strtoupper($value));
         });
 
-        Validator.extend('nif', function ($attribute, $value, $parameters, $validator) {
+        Validator::extend('nif', function ($attribute, $value, $parameters, $validator) {
             $identity = new SpanishID();
             return $identity->isValidNif(strtoupper($value));
         });
 
-        Validator.extend('cif', function ($attribute, $value, $parameters, $validator) {
+        Validator::extend('cif', function ($attribute, $value, $parameters, $validator) {
             $identity = new SpanishID();
             return $identity->isValidCif(strtoupper($value));
         });
 
-        Validator.extend('nie', function ($attribute, $value, $parameters, $validator) {
+        Validator::extend('nie', function ($attribute, $value, $parameters, $validator) {
             $identity = new SpanishID();
             return $identity->isValidNie(strtoupper($value));
         });
 
-        Validator.extend('nnss', function ($attribute, $value, $parameters, $validator) {
+        Validator::extend('nnss', function ($attribute, $value, $parameters, $validator) {
             $identity = new SpanishID();
             return $identity->isValidNNSS(strtoupper($value));
         });
@@ -82,25 +82,25 @@ class SpanishIDServiceProvider extends ServiceProvider
     private function addMessages(): void
     {
         /** @var Translator $translator */
-        $translator = $this->app->make(Translator.class);
+        $translator = $this->app->make(Translator::class);
 
-        Validator.replacer('dni', function ($message, $attribute, $rule, $parameters) use ($translator) {
+        Validator::replacer('dni', function ($message, $attribute, $rule, $parameters) use ($translator) {
             return $translator->get('spanishid.validation.dni', ['attribute' => $attribute]);
         });
 
-        Validator.replacer('nif', function ($message, $attribute, $rule, $parameters) use ($translator) {
+        Validator::replacer('nif', function ($message, $attribute, $rule, $parameters) use ($translator) {
             return $translator->get('spanishid.validation.nif', ['attribute' => $attribute]);
         });
 
-        Validator.replacer('cif', function ($message, $attribute, $rule, $parameters) use ($translator) {
+        Validator::replacer('cif', function ($message, $attribute, $rule, $parameters) use ($translator) {
             return $translator->get('spanishid.validation.cif', ['attribute' => $attribute]);
         });
 
-        Validator.replacer('nie', function ($message, $attribute, $rule, $parameters) use ($translator) {
+        Validator::replacer('nie', function ($message, $attribute, $rule, $parameters) use ($translator) {
             return $translator->get('spanishid.validation.nie', ['attribute' => $attribute]);
         });
 
-        Validator.replacer('nnss', function ($message, $attribute, $rule, $parameters) use ($translator) {
+        Validator::replacer('nnss', function ($message, $attribute, $rule, $parameters) use ($translator) {
             return $translator->get('spanishid.validation.nnss', ['attribute' => $attribute]);
         });
     }
